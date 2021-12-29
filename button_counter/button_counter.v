@@ -11,7 +11,7 @@ module button_counter (
 );
 
     wire rst;
-    reg [31:0] divider;
+    reg [22:0] counter;
     reg div_clk;
 
     // Reset is the inverse of the first button
@@ -19,11 +19,12 @@ module button_counter (
 
     always @(posedge clk or posedge rst) begin
         if (rst == 1'b1) begin
-            divider <= 32'b0;
-        end else if (divider == 600000) begin
-            div_clk <= ~div_clk;
+            counter <= 32'b0;
         end else begin
-            divider <= divider + 1;
+            counter <= counter + 1;
+            if (counter == 0) begin
+                div_clk <= ~div_clk;
+            end
         end
     end
     // Count up on clock rising edge or reset on reset button push
@@ -31,6 +32,7 @@ module button_counter (
         if (rst == 1'b1) begin
             led <= 4'b0;
         end else begin
+        //end else if (counter == 0) begin
             led <= led + 1'b1;
         end
     end
