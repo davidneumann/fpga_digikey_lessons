@@ -22,7 +22,7 @@ module button_counter (
             counter <= 32'b0;
         end else begin
             counter <= counter + 1;
-            if (counter == 0) begin
+            if (counter == 6000000) begin
                 div_clk <= ~div_clk;
             end
         end
