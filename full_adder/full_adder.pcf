@@ -1,0 +1,8 @@
+# LEDs
+set_io      s           99
+set_io      cout        98
+
+# I/O
+set_io  -pullup yes a 78
+set_io  -pullup yes b 79
+set_io  -pullup yes cin 80
